@@ -1,0 +1,14 @@
+.single-post{
+    &__img{
+        height: 80%;
+        width: 100%;
+        object-fit: contain;
+    }
+    &__title{
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    &__from{
+        opacity: .5;
+    }
+}

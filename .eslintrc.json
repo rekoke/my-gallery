@@ -31,7 +31,8 @@
     ],
     "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
     "react/jsx-max-props-per-line": ["error", { "maximum": 3 }],
-    "react/jsx-sort-props": ["error", { "ignoreCase": true }]
+    "react/jsx-sort-props": ["error", { "ignoreCase": true }],
+    "no-nested-ternary": "off"
   },
   "settings": {
     "react": {

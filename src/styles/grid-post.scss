@@ -1,0 +1,10 @@
+.grid-post{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px;
+    justify-content: space-around;
+    .single-post{
+        width: 30%;
+        margin-bottom: 10px;
+    }
+}
