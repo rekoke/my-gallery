@@ -40,6 +40,7 @@ class Admin extends React.Component {
 
   handleChangeImg = e => {
     const file = e.target.files[0];
+    const { postView } = this.state;
     if (file) {
       const fileType = file.type;
       const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
@@ -48,6 +49,7 @@ class Admin extends React.Component {
         this.setState({
           fileSrc: URL.createObjectURL(file),
           image: file,
+          lastAboutShowing: postView,
         });
       } else {
         console.log('bad image type');
@@ -133,20 +135,39 @@ class Admin extends React.Component {
     });
   };
 
-  createPost = () => {
-    const { uploadedUrl, title, from, about, postView } = this.state;
+  updateAbout = () => {
+    const { about, uploadedUrl } = this.state;
+    console.log('uploadedUrl......', uploadedUrl);
     return db
-      .collection(postView ? 'posts' : 'about')
-      .add(
-        postView
+      .collection('about')
+      .doc('C1zoKBIJeoxRKmCXhJDs')
+      .update(
+        uploadedUrl && about
           ? {
-              title,
-              city: from,
-              img: uploadedUrl,
-              created: timestamp,
+              about,
+              uploadedUrl,
             }
-          : { about, img: uploadedUrl, created: timestamp }
+          : uploadedUrl
+          ? { uploadedUrl }
+          : { about }
       )
+      .then(() => {
+        this.setState({ posted: true });
+        this.setState({ completed: 100 });
+      });
+  };
+
+  createPost = () => {
+    const { uploadedUrl, title, from } = this.state;
+
+    return db
+      .collection('posts')
+      .add({
+        title,
+        city: from,
+        img: uploadedUrl,
+        created: timestamp,
+      })
       .then(() => {
         this.setState({ posted: true });
         this.setState({ completed: 100 });
@@ -223,7 +244,7 @@ class Admin extends React.Component {
                 <DisplayAbout
                   about={about}
                   fileSrc={fileSrc}
-                  handleUpload={this.handleUpload}
+                  handleUpload={this.updateAbout}
                   lastAbout={lastAbout}
                   lastAboutShowing={lastAboutShowing}
                   toggleAbout={this.toggleAbout}

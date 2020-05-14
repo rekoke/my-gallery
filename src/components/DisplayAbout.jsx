@@ -10,6 +10,8 @@ const DisplayAbout = props => {
     lastAboutShowing,
     toggleAbout,
   } = props;
+  console.log('fileSrc-->', fileSrc);
+  console.log('lastAboutShowing-->', lastAboutShowing);
   return (
     <div className="display-about">
       {about !== '' ? (
@@ -20,14 +22,15 @@ const DisplayAbout = props => {
       <div className="display-about__last-container">
         <img
           className="display-about__last-container__img"
-          src={lastAbout.fileSrc}
+          src={!lastAboutShowing ? fileSrc : lastAbout.fileSrc}
         />
         <div className="display-about__last-container__text">
           {about !== '' && !lastAboutShowing ? about : lastAbout.about}
         </div>
       </div>
-      <img src={fileSrc} />
-      <Button onClick={handleUpload}>Upload</Button>
+      {about || fileSrc ? (
+        <Button onClick={handleUpload}>Upload new about</Button>
+      ) : null}
     </div>
   );
 };
