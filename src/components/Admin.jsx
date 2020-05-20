@@ -216,7 +216,7 @@ class Admin extends React.Component {
         {!isAdmin ? (
           <div className="admin-container">
             <div className="admin-container__left">
-              <h2>{postView ? 'EDIT POST' : 'EDIT ABOUT'}</h2>
+              <h2>{postView ? 'new post' : 'EDIT ABOUT'}</h2>
               {postView ? (
                 <Upload
                   handleChangeImg={this.handleChangeImg}

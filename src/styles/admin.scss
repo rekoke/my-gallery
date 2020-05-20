@@ -1,9 +1,9 @@
 .admin-container{
-    height: calc(100vh - 80px);
+    height: 100vh;
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 80px;
+    font-family: 'AnonymicePowerline';
     &__left, &__right{
         justify-content: space-between;
         padding: 40px;
@@ -12,10 +12,15 @@
     }
     &__left{
         width: 40%;
-        border-right: 1px solid black;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background: rgba(235, 235, 235, 0.4);
+        h2{
+            letter-spacing: 2px;
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
     }
     &__right{
         width: 60%;
